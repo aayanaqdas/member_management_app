@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/dashboard.css" />
+    <link rel="stylesheet" href="/static/css/forms.css" />
+    <script
+      src="https://kit.fontawesome.com/c385798621.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <a href="/memberlist" class="nav-logo">
+          <img src="" alt="logo" />
+        </a>
+        <div class="nav-links">
+          <a id="logoutBtn"
+            ><img src="/static/images/logout.svg" alt="log out"
+          /></a>
+        </div>
+      </div>
+    </nav>
+    <div id="toastPopupContainer"></div>
+    <div class="dashboard-container">
+      <div class="header-wrapper">
+        <h1>Users with access</h1>
+        <a href="/memberlist">&slarr;Back</a>
+      </div>
+
+      <div class="table-actions">
+        <button id="addBtn" class="table-action-btns">
+          <!-- <img src="/static/images/plus.svg" alt="" /> -->
+          <span class="plus-symbol">&#43;</span>
+        </button>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr class="table-headers">
+              <th class="name-col">Name</th>
+              <th class="email-col">E-mail</th>
+              <th class="role-col">Role</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="addUserModal" class="forms-modal hide-element">
+      <div class="forms-modal-content">
+        <span class="close">&times;</span>
+        <div class="form-container">
+          <h1>Give access</h1>
+          <form id="registerForm">
+            <div class="form-group">
+              <label for="name" class="required-field">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="required-field">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="psw" class="required-field">Password:</label>
+              <input
+                type="password"
+                id="psw"
+                name="password"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPsw" class="required-field"
+                >Confirm password:</label
+              >
+              <input
+                type="password"
+                id="confirmPsw"
+                name="confirmPassword"
+                placeholder="Confirm password"
+                required
+              />
+              <small id="confirmPswMessage"></small>
+            </div>
+
+            <div class="role-group">
+              <label for="selectRole" class="required-field">Role:</label>
+              <select name="role" id="selectRole" required>
+                <option value="" disabled selected hidden>Select role</option>
+                <option value="Guest">Guest</option>
+                <option value="Editor">Editor</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              id="registerFormSubmitBtn"
+              class="form-submit-btn"
+              disabled
+            >
+              <span class="btn-text">Give access</span>
+              <div class="loader" style="display: none"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="deleteModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalText"></p>
+        <button id="confirmDeleteBtn">Yes, delete</button>
+        <button id="cancelDeleteBtn">Cancel</button>
+      </div>
+    </div>
+
+    <script type="module" src="/static/js/dashboard.js"></script>
+  </body>
+</html>

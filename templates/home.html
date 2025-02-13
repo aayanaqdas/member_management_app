@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/forms.css" />
+    <script
+      src="https://kit.fontawesome.com/c385798621.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Memberlist</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <a href="/memberlist" class="nav-logo">
+          <img src="" alt="logo" />
+        </a>
+        <div class="nav-links">
+          <a href="/dashboard" id="dashboardBtn"
+            ><img src="/static/images/user-setting.svg" alt="dashboard"
+          /></a>
+          <a id="logoutBtn"
+            ><img src="/static/images/logout.svg" alt="log out"
+          /></a>
+        </div>
+      </div>
+    </nav>
+    <div id="toastPopupContainer"></div>
+    <div class="container">
+      <h1>Memberlist</h1>
+      <div class="excel-btns" id="excelBtnContainer">
+        <div class="import-btn">
+          <button id="importBtn">
+            <img src="/static/images/import.svg" alt="" />
+          </button>
+
+          <p>Import from Excel</p>
+        </div>
+        <div class="export-btn">
+          <button id="exportBtn">
+            <img src="/static/images/export.svg" alt="" />
+          </button>
+          <p>Export to Excel</p>
+        </div>
+      </div>
+      <div class="count_table-actions">
+        <div class="count">
+          <p id="memberCount"></p>
+          <p>Members selected: <span id="selectedCount">0</span></p>
+        </div>
+
+        <div class="table-actions" id="tableActionContainer">
+          <div id="editDeleteBtns" class="hide-element">
+            <button id="deleteBtn" class="table-action-btns">
+              <img src="/static/images/delete.svg" alt="delete member button" />
+            </button>
+
+            <button id="editBtn" class="table-action-btns">
+              <img src="/static/images/edit.svg" alt="edit member button" />
+            </button>
+          </div>
+
+          <button id="addBtn" class="table-action-btns">
+            <!-- <img src="/static/images/plus.svg" alt="add member button" /> -->
+            <span class="plus-symbol">&#43;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="search_filters">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Search after name, e-mail and number"
+        />
+        <h4>Filter search:</h4>
+        <div class="filters">
+          <select id="departmentFilter">
+            <option value="">All</option>
+            <option value="Europe">Europe</option>
+            <option value="Asia">Asia</option>
+            <option value="Africa">Africa</option>
+            <option value="America">America</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+          <button type="button" class="filter-btn" data-filter="name">
+            Name
+          </button>
+          <button type="button" class="filter-btn" data-filter="email">
+            E-mail
+          </button>
+          <button type="button" class="filter-btn" data-filter="number">
+            Number
+          </button>
+          <button type="button" class="filter-btn paid-btn" data-filter="paid">
+            Paid
+          </button>
+          <button
+            type="button"
+            class="filter-btn paid-btn"
+            data-filter="unpaid"
+          >
+            Unpaid
+          </button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr class="table-headers">
+              <th><input type="checkbox" id="selectAllCheckbox" /></th>
+              <th class="name-col">Name</th>
+              <th class="email-col">E-mail</th>
+              <th class="number-col">Number</th>
+              <th class="address-col">Address</th>
+              <th class="department-col">Department</th>
+              <th class="paid-col">Paid</th>
+              <th class="comment-col">Comment</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <button id="scrollToTopBtn" class="scroll-to-top-btn">↑</button>
+    </div>
+
+    <div id="newMemberFormModal" class="forms-modal hide-element">
+      <div class="forms-modal-content">
+        <span class="close">&times;</span>
+        <div class="form-container">
+          <h1>New member</h1>
+          <form id="newMemberForm">
+            <div class="form-group">
+              <label for="name" class="required-field">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter e-mail"
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone" class="required-field">Phone number:</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter phone number"
+                minlength="8"
+                pattern=".{8,}"
+                maxlength="12"
+                required
+                title="Phone number must be between 8 and 12 characters long."
+              />
+            </div>
+            <div class="form-group">
+              <label for="address">Address:</label>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="Enter address"
+              />
+            </div>
+            <div class="department-group">
+              <label for="department" class="required-field">Department:</label>
+              <select name="department" id="department" required>
+                <option value="" disabled selected hidden>
+                  Select department
+                </option>
+                <option value="Europe">Europe</option>
+                <option value="Asia">Asia</option>
+                <option value="Africa">Africa</option>
+                <option value="America">America</option>
+                <option value="Oceania">Oceania</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="comment">Comment:</label>
+              <input
+                type="text"
+                id="comment"
+                name="comment"
+                placeholder="Enter comment"
+              />
+            </div>
+
+            <div class="checkbox-group">
+              <div class="checkbox">
+                <input type="checkbox" id="paid" name="paid" />
+                <label for="paid">Paid member</label>
+              </div>
+            </div>
+            <button type="submit" id="newFormSubmitBtn" class="form-submit-btn">
+              <span class="btn-text">Add member</span>
+              <div class="loader" style="display: none"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="editMemberFormModal" class="forms-modal hide-element">
+      <div class="forms-modal-content">
+        <span id="editMemberClose" class="close">&times;</span>
+        <div class="form-container">
+          <h1>Edit member</h1>
+          <form id="editMemberForm">
+            <div class="form-group">
+              <label for="name" class="required-field">Name:</label>
+              <input
+                type="text"
+                id="editName"
+                name="name"
+                placeholder="Enter name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input
+                type="email"
+                id="editEmail"
+                name="email"
+                placeholder="Enter e-mail"
+              />
+            </div>
+            <div class="form-group">
+              <label for="phone" class="required-field">Phone number:</label>
+              <input
+                type="tel"
+                id="editPhone"
+                name="phone"
+                placeholder="Enter phone number"
+                minlength="8"
+                pattern=".{8,}"
+                maxlength="12"
+                required
+                title="Phone number must be between 8 and 12 characters long."
+              />
+            </div>
+            <div class="form-group">
+              <label for="address">Address:</label>
+              <input
+                type="text"
+                id="editAddress"
+                name="address"
+                placeholder="Enter address"
+              />
+            </div>
+            <div class="department-group">
+              <label for="department" class="required-field">Department:</label>
+              <select name="department" id="editDepartment" required>
+                <option value="" disabled selected hidden>
+                  Select department
+                </option>
+                <option value="Europe">Europe</option>
+                <option value="Asia">Asia</option>
+                <option value="Africa">Africa</option>
+                <option value="America">America</option>
+                <option value="Oceania">Oceania</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="comment">Comment:</label>
+              <input
+                type="text"
+                id="editComment"
+                name="comment"
+                placeholder="Enter comment"
+              />
+            </div>
+
+            <div class="checkbox-group">
+              <div class="checkbox">
+                <input type="checkbox" id="editPaid" name="paid" />
+                <label for="paid">Paid member</label>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              id="editFormSubmitBtn"
+              class="form-submit-btn"
+            >
+              <span class="btn-text">Save</span>
+              <div class="loader" style="display: none"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="importMembersFormModal" class="forms-modal hide-element">
+      <div class="forms-modal-content">
+        <span id="importMemberClose" class="close">&times;</span>
+        <div class="form-container">
+          <h1>Import members from Excel file</h1>
+          <form id="importMembersForm">
+            <div class="form-group">
+              <label for="importFile" class="required-field"
+                >Select Excel file:</label
+              >
+              <input
+                type="file"
+                id="importFile"
+                name="importFile"
+                accept=".xlsx, .xls"
+                required
+              />
+            </div>
+            <div class="department-group">
+              <label for="departmentSelect" class="required-field"
+                >Select department for import:</label
+              >
+              <select id="departmentSelect" required>
+                <option value="" disabled selected hidden></option>
+                <option value="Europe">Europe</option>
+                <option value="Asia">Asia</option>
+                <option value="Africa">Africa</option>
+                <option value="America">America</option>
+                <option value="Oceania">Oceania</option>
+              </select>
+            </div>
+            <div class="department-group">
+              <label for="importOptionSelect" class="required-field"
+                >Select import option:</label
+              >
+              <select id="importOptionSelect" required>
+                <option value="" disabled selected hidden></option>
+                <option value="add">Add to table</option>
+                <option value="replace_all">Replace all existing data</option>
+              </select>
+              <small id="importWarning" class="message hide-element">
+                Note: This option will delete all existing data from the table
+                and replace it with the imported file.
+              </small>
+            </div>
+            <button
+              type="submit"
+              id="importFormSubmitBtn"
+              class="form-submit-btn"
+            >
+              <span class="btn-text">Import</span>
+              <div class="loader" style="display: none"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="deleteModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalText"></p>
+        <button id="confirmDeleteBtn">Yes, delete</button>
+        <button id="cancelDeleteBtn">Cancel</button>
+      </div>
+    </div>
+
+    <script type="module" src="/static/js/main.js"></script>
+    <script type="module" src="/static/js/filters.js"></script>
+    <script type="module" src="/static/js/excelHandler.js"></script>
+  </body>
+</html>
