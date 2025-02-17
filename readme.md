@@ -71,8 +71,9 @@ mysql -u root -p < setup_db.sql
 1. Create a `.env` file in the root directory of the project and add the following environment variables:
 
 ```env
-DB_user = 'your_database_user'
-DB_password = 'your_database_password'
+Db_host = 'db_host_ip'
+DB_user = 'db_user'
+DB_password = 'db_password'
 DB_name = 'memberlist'
 
 SECRET_KEY = 'your_secret_key'
@@ -122,6 +123,7 @@ python run.py
 
 ## Excel File Format
 
+Ensure members from different departments are in different files and import them seperately.
 To import members using an Excel file, ensure that your file follows the format below:
 
 | Column Name | Description                |
@@ -177,8 +179,8 @@ Example:
 </a>
 
 ### Edit Member Form Mobile
-<a href="static/images/readMe/mobileEditmember.png" target="_blank">
-  <img src="static/images/readMe/mobileEditmember.png" alt="Mobile Edit Member" width="300">
+<a href="static/images/readMe/mobileEditMember.png" target="_blank">
+  <img src="static/images/readMe/mobileEditMember.png" alt="Mobile Edit Member" width="300">
 </a>
 
 ### Import Members Form
