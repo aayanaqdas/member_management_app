@@ -1,6 +1,9 @@
 # Member Management Application
 
-This is a Flask-based web application for managing members of an organization. The application allows users to add, edit, delete, and filter members, as well as import and export member data using Excel files. It also includes user authentication and role-based access control.
+This is a Flask-based web application for managing members of an organization. The application is responsive and allows users to add, edit, delete, and filter members, as well as import and export member data using Excel files. It also includes user authentication and role-based access control.
+
+I built this app for someone who wanted a simple web application where they could have an overview of their member information and track payment statuses aswell as import/export excel files. I took on this project because it was a great learning opportunity for me.
+
 
 ## Technologies and languages used:
 
@@ -23,6 +26,7 @@ This is a Flask-based web application for managing members of an organization. T
 - Configuration
 - Usage
 - API Endpoints
+- Excel File Format
 - Screenshots
 
 ## Features
@@ -32,6 +36,7 @@ This is a Flask-based web application for managing members of an organization. T
 - Add, edit, delete, and filter members
 - Import and export member data using Excel files
 - User management dashboard for admins
+- Responsive design
 
 ## Installation
 
@@ -114,3 +119,85 @@ python run.py
 
 - `POST /api/import_members`: Import members from an Excel file
 - `GET /api/export_members`: Export members to an Excel file
+
+## Excel File Format
+
+To import members using an Excel file, ensure that your file follows the format below:
+
+| Column Name | Description                |
+|-------------|----------------------------|
+| `name`      | Full name of the member    |
+| `email`     | Email address of the member|
+| `address`   | Address of the member      |
+| `number`    | Phone number of the member |
+| `paid`      | Payment status (Yes/No)    |
+
+Example:
+
+| name       | email             | address         | number       | paid |
+|------------|-------------------|-----------------|--------------|------|
+| John Doe   | john@example.com  | 123 Main St     | 12345678     | Yes  |
+| Jane Smith | jane@example.com  | 456 Elm St      | 87654321     | No   |
+
+## Screenshots
+
+### Login Page
+<a href="static/images/readMe/login.png" target="_blank">
+  <img src="static/images/readMe/login.png" alt="Login Page" width="600">
+</a>
+
+### Member List
+<a href="static/images/readMe/memberlist.png" target="_blank">
+  <img src="static/images/readMe/memberlist.png" alt="Member List" width="600">
+</a>
+
+### Filter Members
+<a href="static/images/readMe/filters.png" target="_blank">
+  <img src="static/images/readMe/filters.png" alt="Filter Members" width="600">
+</a>
+
+### Memberlist and Filters Mobile
+<div style="display: flex; gap:8px;">
+  <a href="static/images/readMe/mobileMemberlist.png" target="_blank">
+    <img src="static/images/readMe/mobileMemberlist.png" alt="Mobile Member List" width="300">
+  </a>
+  <a href="static/images/readMe/mobileFilter.png" target="_blank">
+    <img src="static/images/readMe/mobileFilters.png" alt="Mobile Filter" width="300">
+  </a>
+</div>
+
+### Add Member Form
+<a href="static/images/readMe/addMemberModal.png" target="_blank">
+  <img src="static/images/readMe/addMemberModal.png" alt="Add Member Form" width="600">
+</a>
+
+### Edit Member Form
+<a href="static/images/readMe/editMemberModal.png" target="_blank">
+  <img src="static/images/readMe/editMemberModal.png" alt="Edit Member Form" width="600">
+</a>
+
+### Edit Member Form Mobile
+<a href="static/images/readMe/mobileEditmember.png" target="_blank">
+  <img src="static/images/readMe/mobileEditmember.png" alt="Mobile Edit Member" width="300">
+</a>
+
+### Import Members Form
+<a href="static/images/readMe/importModal.png" target="_blank">
+  <img src="static/images/readMe/importModal.png" alt="Import Members Form" width="600">
+</a>
+
+### Excel Export File
+<a href="static/images/readMe/export.png" target="_blank">
+  <img src="static/images/readMe/export.png" alt="Export Members" width="600">
+</a>
+
+### Admin Panel
+<a href="static/images/readMe/dashboard.png" target="_blank">
+  <img src="static/images/readMe/dashboard.png" alt="Admin Panel" width="600">
+</a>
+
+### Register User Form
+<a href="static/images/readMe/registerUser.png" target="_blank">
+  <img src="static/images/readMe/registerUser.png" alt="Register User Form" width="600">
+</a>
+

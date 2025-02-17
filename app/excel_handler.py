@@ -58,7 +58,7 @@ def import_members():
                     cursor.execute(
                         "INSERT INTO members (name, email, number, address, department, paid, comment) VALUES (%s, %s, %s, %s, %s, %s, %s) "
                         "ON DUPLICATE KEY UPDATE name=VALUES(name), email=VALUES(email), number=VALUES(number), address=VALUES(address), department=VALUES(department), paid=VALUES(paid), comment=VALUES(comment)",
-                        (row['name'], row['email'], row['number'], row['address'], department, row['paid'], '')
+                        (row['name'], row['email'], row['number'], row['address'], department, row['paid'], '') #Department doesnt have to be in the excel file because you select it in the website when importing
                     )
                 except Exception as e:
                     logger.error(f"Failed to insert row: {row.to_dict()}, error: {str(e)}")
